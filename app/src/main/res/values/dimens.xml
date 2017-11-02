@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dp_line">1dp</dimen>
+    <dimen name="px_line">1px</dimen>
+
+    <dimen name="toolbar_height">48dp</dimen>
+    <dimen name="toolbar_top_right_width">72dp</dimen>
+    <dimen name="blank_item_divider">24dp</dimen>
+    <dimen name="personal_item_height">48dp</dimen>
+
+    <!--icon size-->
+    <dimen name="icon_normal_icon">24dp</dimen>
+    <dimen name="icon_small_icon">16dp</dimen>
+
+    <!--margin & padding-->
+    <dimen name="padding_container_huge">32dp</dimen>
+    <dimen name="padding_container">16dp</dimen>
+    <dimen name="padding_large">12dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
+    <dimen name="padding_small">6dp</dimen>
+    <dimen name="padding_normal_icon">4dp</dimen>
+    <dimen name="padding_text_large">6dp</dimen>
+    <dimen name="padding_text">4dp</dimen>
+    <dimen name="padding_micro">2dp</dimen>
+
+    <dimen name="margin_dialog">42dp</dimen>
+    <dimen name="margin_top_img">32dp</dimen>
+    <dimen name="margin_huge">24dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="margin_medium">12dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_micro">2dp</dimen>
+
+    <!--drawable svg-->
+    <dimen name="radius_btn_large">6dp</dimen>
+    <dimen name="radius_btn_medium">4dp</dimen>
+    <dimen name="radius_btn_small">2dp</dimen>
+    <dimen name="radius_text_large">16dp</dimen>
+    <dimen name="radius_text_medium">10px</dimen>
+</resources>

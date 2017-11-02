@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#f4f4f4</color>-->
+    <!--<color name="colorPrimaryDark">#efefef</color>-->
+    <!--<color name="colorAccent">#3595FF</color>-->
+    <color name="PrimaryLight">#4ca1ff</color>
+    <color name="colorPrimary">#3595FF</color>
+    <color name="colorPrimaryDark">#2870be</color>
+    <color name="colorAccent">#c2b415</color>
+
+    <color name="background_blank">#fafafa</color>
+    <color name="background_gray">#f0f0f0</color>
+    <color name="white">#ffffff</color>
+
+    <!--gradual gray color-->
+    <color name="text_blue">#79b8ff</color>
+    <color name="text_light">#cdcdcd</color>
+    <color name="textPrimary">#a09f9f</color>
+    <color name="textPrimaryDark">#3b3b3b</color>
+    <!--activity title text color-->
+    <color name="text_title_gray">#7e7e7e</color>
+    <color name="text_black">#181818</color>
+    <color name="text_orange">#DB7A65</color>
+
+    <color name="border_gray">#e3e3e3</color>
+    <color name="border_dark">#a1a1a1</color>
+</resources>

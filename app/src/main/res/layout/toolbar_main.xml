@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/toolbar_height"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:id="@+id/toolbar_select_location"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:onClick="onLocation"
+        android:paddingLeft="@dimen/padding_large"
+        android:paddingRight="@dimen/padding_large"
+        android:text="杭州"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/toolbar_search_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_toEndOf="@+id/toolbar_select_location"
+        android:background="@drawable/main_search_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_small">
+
+        <ImageView
+            android:layout_width="@dimen/icon_small_icon"
+            android:layout_height="@dimen/icon_small_icon"
+            android:src="@drawable/ic_search" />
+
+        <TextView
+            android:id="@+id/toolbar_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_medium"
+            android:text="@string/main_search_text"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>

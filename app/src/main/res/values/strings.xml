@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">PocketBus</string>
+
+    <string name="title_activity_splash">SplashActivity</string>
+
+    <string name="splash_text">Pocket\nBus</string>
+
+    <string name="main_search_text">搜索公交线路，车站，地点</string>
+    <string name="road_from">从</string>
+    <string name="road_to">到</string>
+    <string name="road_my_location">我的位置</string>
+    <string name="road_destination">输入终点</string>
+
+    <string name="item_mine_collect">收藏</string>
+    <string name="item_mine_setting">系统设置</string>
+    <string name="item_mine_about">关于</string>
+</resources>
