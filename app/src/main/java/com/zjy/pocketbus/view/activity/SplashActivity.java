@@ -1,10 +1,12 @@
-package com.zjy.pocketbus;
+package com.zjy.pocketbus.view.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+
+import com.zjy.pocketbus.R;
 
 public class SplashActivity extends AppCompatActivity {
 

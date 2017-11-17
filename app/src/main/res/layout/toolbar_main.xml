@@ -5,15 +5,15 @@
     android:background="@color/colorPrimary">
 
     <TextView
-        android:id="@+id/toolbar_select_location"
+        android:id="@+id/toolbar_location"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:gravity="center"
-        android:onClick="onLocation"
+        android:ellipsize="marquee"
         android:paddingLeft="@dimen/padding_large"
         android:paddingRight="@dimen/padding_large"
-        android:text="杭州"
+        android:text="定位中"
         android:textColor="@color/white" />
 
     <LinearLayout
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/margin_medium"
-        android:layout_toEndOf="@+id/toolbar_select_location"
+        android:layout_toEndOf="@+id/toolbar_location"
         android:background="@drawable/main_search_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal"

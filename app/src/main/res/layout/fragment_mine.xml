@@ -14,20 +14,28 @@
         android:orientation="vertical"
         android:padding="@dimen/padding_container">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="84dp"
-            android:layout_height="84dp"
-            android:src="@mipmap/user_default_icon"
-            app:civ_border_color="@color/PrimaryLight"
-            app:civ_border_width="4dp" />
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/login_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:text="登录/注册"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="92dp"
+                android:layout_height="92dp"
+                android:src="@mipmap/user_default_icon"
+                app:civ_border_color="@color/PrimaryLight"
+                app:civ_border_width="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="登录/注册"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -49,7 +57,7 @@
             android:id="@+id/collection"
             android:layout_width="match_parent"
             android:layout_height="@dimen/personal_item_height"
-            android:background="@color/white"
+            android:background="@drawable/selector_white"
             android:padding="@dimen/padding_large">
 
             <ImageView
@@ -99,7 +107,7 @@
             android:id="@+id/setting"
             android:layout_width="match_parent"
             android:layout_height="@dimen/personal_item_height"
-            android:background="@color/white"
+            android:background="@drawable/selector_white"
             android:padding="@dimen/padding_large">
 
             <ImageView
@@ -140,7 +148,7 @@
             android:id="@+id/about"
             android:layout_width="match_parent"
             android:layout_height="@dimen/personal_item_height"
-            android:background="@color/white"
+            android:background="@drawable/selector_white"
             android:padding="@dimen/padding_large">
 
             <ImageView

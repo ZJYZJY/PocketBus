@@ -10,7 +10,6 @@
 
     <color name="background_blank">#fafafa</color>
     <color name="background_gray">#f0f0f0</color>
-    <color name="white">#ffffff</color>
 
     <!--gradual gray color-->
     <color name="text_blue">#79b8ff</color>
@@ -22,6 +21,13 @@
     <color name="text_black">#181818</color>
     <color name="text_orange">#DB7A65</color>
 
+    <color name="btn_blue_normal">#3595FF</color>
+    <color name="btn_blue_pressed">#3184e2</color>
+
     <color name="border_gray">#e3e3e3</color>
     <color name="border_dark">#a1a1a1</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="white_pressed">#FFCFCFCF</color>
 </resources>
