@@ -16,6 +16,7 @@ import com.amap.api.location.AMapLocationListener;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.zjy.pocketbus.LocationHelper;
 import com.zjy.pocketbus.R;
 import com.zjy.pocketbus.entity.TabEntity;
 import com.zjy.pocketbus.view.fragment.MineFragment;
@@ -132,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
             if (aMapLocation.getErrorCode() == 0) {
                 mCurrentCityName = aMapLocation.getCity();
                 EventBus.getDefault().postSticky(aMapLocation);
+                LocationHelper.getInstance(aMapLocation);
                 Toast.makeText(this, aMapLocation.getCity(), Toast.LENGTH_SHORT).show();
                 //停止定位后，本地定位服务并不会被销毁
                 mLocationClient.stopLocation();

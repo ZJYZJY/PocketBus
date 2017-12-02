@@ -16,7 +16,11 @@ import com.zjy.pocketbus.view.activity.SearchActivity;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import static android.app.Activity.RESULT_OK;
+
 public class NearbyFragment extends Fragment implements View.OnClickListener {
+
+    private final int SEARCH_BUS_STOP = 2;
 
     private TextView mLocation;
     private View mSearchBox;
@@ -41,8 +45,20 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.toolbar_search_box:
-                startActivity(new Intent(getContext(), SearchActivity.class));
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                intent.putExtra("search_bus_stop", true);
+                startActivityForResult(intent, SEARCH_BUS_STOP);
                 break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            if(requestCode == SEARCH_BUS_STOP){
+
+            }
         }
     }
 

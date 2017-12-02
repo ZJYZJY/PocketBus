@@ -19,13 +19,14 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/search_bus_route"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:gravity="center"
             android:padding="@dimen/padding_medium"
-            android:textColor="@color/white"
-            android:text="@string/road_search"/>
+            android:text="@string/road_search"
+            android:textColor="@color/white" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -65,9 +66,11 @@
                     android:padding="@dimen/padding_small">
 
                     <TextView
+                        android:id="@+id/start_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/padding_medium"
+                        android:maxLines="1"
                         android:text="@string/road_my_location"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
@@ -106,9 +109,11 @@
                     android:padding="@dimen/padding_small">
 
                     <TextView
+                        android:id="@+id/end_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/padding_medium"
+                        android:maxLines="1"
                         android:text="@string/road_destination"
                         android:textColor="@color/white"
                         android:textSize="16sp" />

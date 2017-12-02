@@ -38,7 +38,7 @@
                 android:src="@drawable/ic_edit_phone" />
 
             <EditText
-                android:id="@+id/login_phone"
+                android:id="@+id/login_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_micro"
@@ -83,6 +83,7 @@
     </LinearLayout>
 
     <Button
+        android:onClick="onLogin"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

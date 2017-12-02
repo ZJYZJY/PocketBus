@@ -27,12 +27,19 @@ public class SearchActivity extends AppCompatActivity implements Inputtips.Input
 
     private EditText mSearch;
     private ListView minputlist;
+    private String mStartLoc, mEndLoc;
+
+    private boolean isSearchBus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         WindowUtils.setStatusBarColor(this, R.color.colorPrimary, false);
+
+        mStartLoc = getIntent().getStringExtra("start");
+        mEndLoc = getIntent().getStringExtra("end");
+        isSearchBus = getIntent().getBooleanExtra("search_bus_stop", false);
 
         minputlist = (ListView) findViewById(R.id.inputtips_list);
         mSearch = (EditText) findViewById(R.id.toolbar_search);
@@ -43,8 +50,8 @@ public class SearchActivity extends AppCompatActivity implements Inputtips.Input
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String newText = s.toString().trim();
-                InputtipsQuery inputquery = new InputtipsQuery(newText, null);
-                Inputtips inputTips = new Inputtips(SearchActivity.this, inputquery);
+                InputtipsQuery inputQuery = new InputtipsQuery(newText, null);
+                Inputtips inputTips = new Inputtips(SearchActivity.this, inputQuery);
                 inputTips.setInputtipsListener(SearchActivity.this);
                 inputTips.requestInputtipsAsyn();
             }
@@ -77,8 +84,12 @@ public class SearchActivity extends AppCompatActivity implements Inputtips.Input
                     data.putExtra("address", tipList.get(i).getDistrict() + tipList.get(i).getAddress());
                     data.putExtra("pointX", tipList.get(i).getPoint().getLatitude());
                     data.putExtra("pointY", tipList.get(i).getPoint().getLongitude());
-                    setResult(RESULT_OK, data);
-                    finish();
+                    if(!isSearchBus){
+                        setResult(RESULT_OK, data);
+                        finish();
+                    } else {
+
+                    }
                 }
             });
 

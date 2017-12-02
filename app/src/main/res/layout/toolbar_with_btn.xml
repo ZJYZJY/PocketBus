@@ -22,7 +22,7 @@
         android:layout_marginStart="@dimen/padding_medium"
         android:layout_toEndOf="@+id/back_arrow"
         android:layout_toRightOf="@+id/back_arrow"
-        android:textColor="@color/text_title_gray"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <Button
@@ -35,6 +35,6 @@
         android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/margin_small"
         android:layout_marginRight="@dimen/margin_small"
-        android:textColor="@color/text_title_gray"
+        android:textColor="@color/white"
         android:textSize="16sp" />
 </RelativeLayout>
