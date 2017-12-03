@@ -1,4 +1,4 @@
-package com.zjy.pocketbus;
+package com.zjy.pocketbus.helper;
 
 import com.amap.api.location.AMapLocation;
 

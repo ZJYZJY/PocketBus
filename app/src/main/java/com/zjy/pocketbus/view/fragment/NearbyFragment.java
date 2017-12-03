@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
 import com.zjy.pocketbus.R;
+import com.zjy.pocketbus.utils.SpfsUtils;
+import com.zjy.pocketbus.utils.ToastUtil;
 import com.zjy.pocketbus.view.activity.SearchActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -25,10 +27,13 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
     private TextView mLocation;
     private View mSearchBox;
 
+    private String city;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
+
     }
 
     @Nullable
@@ -38,6 +43,9 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
         mLocation = (TextView) view.findViewById(R.id.toolbar_location);
         mSearchBox = view.findViewById(R.id.toolbar_search_box);
         mSearchBox.setOnClickListener(this);
+
+        city = SpfsUtils.readString(getContext(), SpfsUtils.CACHE, "city", "定位中");
+        mLocation.setText(city);
         return view;
     }
 
@@ -64,7 +72,12 @@ public class NearbyFragment extends Fragment implements View.OnClickListener {
 
     @Subscribe(sticky = true)
     public void onLoactionChanged(AMapLocation aMapLocation){
-        mLocation.setText(aMapLocation.getCity());
+        String newCity = aMapLocation.getCity();
+        if(!newCity.equals(city)){
+            mLocation.setText(newCity);
+            ToastUtil.show(getContext(), "已切换到" + newCity);
+            SpfsUtils.write(getContext(), SpfsUtils.CACHE, "city", aMapLocation.getCity());
+        }
     }
 
     @Override

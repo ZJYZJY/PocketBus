@@ -13,7 +13,7 @@ import java.util.List;
 
 public class User {
 
-    private String userId;
+    private Double userId;
     private String username;
     private String nickname;
     private List<String> staredBus;
@@ -21,17 +21,21 @@ public class User {
     public User() {
     }
 
-    public String getUserId() {
+    public Double getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Double userId) {
         if (userId != null)
             this.userId = userId;
     }
 
     public String getNickname() {
-        return nickname;
+        if(nickname == null){
+            return username;
+        } else {
+            return nickname;
+        }
     }
 
     public void setNickname(String nickname) {

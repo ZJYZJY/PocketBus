@@ -16,9 +16,15 @@ import com.amap.api.location.AMapLocationListener;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.zjy.pocketbus.LocationHelper;
+import com.zjy.pocketbus.FieldConstant;
+import com.zjy.pocketbus.UserStatus;
+import com.zjy.pocketbus.entity.SimpleResponse;
+import com.zjy.pocketbus.helper.LocationHelper;
 import com.zjy.pocketbus.R;
 import com.zjy.pocketbus.entity.TabEntity;
+import com.zjy.pocketbus.helper.LoginHelper;
+import com.zjy.pocketbus.utils.HttpUtil;
+import com.zjy.pocketbus.utils.ToastUtil;
 import com.zjy.pocketbus.view.fragment.MineFragment;
 import com.zjy.pocketbus.view.fragment.NearbyFragment;
 import com.zjy.pocketbus.view.fragment.RoadFragment;
@@ -27,6 +33,11 @@ import com.zjy.pocketbus.utils.WindowUtils;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
+import java.util.Map;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements AMapLocationListener {
 
@@ -55,6 +66,34 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
         setContentView(R.layout.activity_main);
         WindowUtils.setStatusBarColor(this, R.color.colorPrimary, false);
 
+        if(UserStatus.isLogin(getApplicationContext())){
+            Map<String, String> data = LoginHelper.readUserPreference(getApplicationContext());
+            HttpUtil.login(data.get(FieldConstant.USER_NAME), data.get(FieldConstant.USER_PASSWORD))
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Subscriber<SimpleResponse>() {
+                        @Override
+                        public void onCompleted() {
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            e.printStackTrace();
+                            ToastUtil.show(MainActivity.this, e.getMessage());
+                        }
+
+                        @Override
+                        public void onNext(SimpleResponse simpleResponse) {
+                            if(simpleResponse.isOk()){
+                                Map<String, Object> data = simpleResponse.getData();
+                                LoginHelper.login(getApplicationContext(), data);
+                                ToastUtil.show(MainActivity.this, "登录成功");
+                            } else {
+                                ToastUtil.show(MainActivity.this, "登录失败");
+                            }
+                        }
+                    });
+        }
         initLocation();
         mViewPager = (ViewPager) findViewById(R.id.vp_main);
         mTabLayout = (CommonTabLayout) findViewById(R.id.tl_main);
@@ -120,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
         //单位是毫秒，默认30000毫秒，建议超时时间不要低于8000毫秒。
         mLocationOption.setHttpTimeOut(20000);
         //关闭缓存机制
-        mLocationOption.setLocationCacheEnable(false);
+        mLocationOption.setLocationCacheEnable(true);
         //给定位客户端对象设置定位参数
         mLocationClient.setLocationOption(mLocationOption);
         //启动定位
@@ -134,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
                 mCurrentCityName = aMapLocation.getCity();
                 EventBus.getDefault().postSticky(aMapLocation);
                 LocationHelper.getInstance(aMapLocation);
-                Toast.makeText(this, aMapLocation.getCity(), Toast.LENGTH_SHORT).show();
                 //停止定位后，本地定位服务并不会被销毁
                 mLocationClient.stopLocation();
             }else {

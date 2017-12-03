@@ -24,7 +24,7 @@
     <dimen name="padding_micro">2dp</dimen>
 
     <dimen name="margin_dialog">42dp</dimen>
-    <dimen name="margin_top_img">32dp</dimen>
+    <dimen name="margin_container">32dp</dimen>
     <dimen name="margin_huge">24dp</dimen>
     <dimen name="margin_large">16dp</dimen>
     <dimen name="margin_medium">12dp</dimen>

@@ -62,7 +62,9 @@
         <activity
             android:name=".view.activity.BusRouteDetailActivity"
             android:theme="@style/AppTheme_NoActionBar" />
-        <activity android:name=".view.activity.RegisterActivity"></activity>
+        <activity
+            android:name=".view.activity.RegisterActivity"
+            android:theme="@style/AppTheme_NoActionBar" />
     </application>
 
 </manifest>

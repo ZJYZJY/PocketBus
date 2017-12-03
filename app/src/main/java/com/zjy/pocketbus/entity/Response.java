@@ -1,9 +1,6 @@
-package com.zjy.pocketbus.base;
+package com.zjy.pocketbus.entity;
 
 import com.google.gson.annotations.Expose;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public abstract class Response<T> {
 

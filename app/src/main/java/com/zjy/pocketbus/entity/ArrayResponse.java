@@ -1,7 +1,6 @@
 package com.zjy.pocketbus.entity;
 
 import com.google.gson.annotations.Expose;
-import com.zjy.pocketbus.base.Response;
 import com.zjy.pocketbus.interfaces.Jsonify;
 
 import org.json.JSONArray;

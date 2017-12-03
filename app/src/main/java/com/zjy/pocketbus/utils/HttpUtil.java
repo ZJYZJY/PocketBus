@@ -117,7 +117,7 @@ public class HttpUtil {
         JSONObject json = new JSONObject();
         try {
             json.put(FieldConstant.USER_NAME, username);
-            json.put("password", StringUtil.getMD5(password));
+            json.put(FieldConstant.USER_PASSWORD, password);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -130,7 +130,7 @@ public class HttpUtil {
         JSONObject json = new JSONObject();
         try {
             json.put(FieldConstant.USER_NAME, username);
-            json.put("password", StringUtil.getMD5(password));
+            json.put(FieldConstant.USER_PASSWORD, password);
         } catch (JSONException e) {
             e.printStackTrace();
         }

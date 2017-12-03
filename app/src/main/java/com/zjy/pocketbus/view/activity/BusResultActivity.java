@@ -11,7 +11,7 @@ import com.amap.api.services.route.DriveRouteResult;
 import com.amap.api.services.route.RideRouteResult;
 import com.amap.api.services.route.RouteSearch;
 import com.amap.api.services.route.WalkRouteResult;
-import com.zjy.pocketbus.LocationHelper;
+import com.zjy.pocketbus.helper.LocationHelper;
 import com.zjy.pocketbus.R;
 import com.zjy.pocketbus.adapter.BusResultListAdapter;
 import com.zjy.pocketbus.utils.ToastUtil;
