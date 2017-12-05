@@ -11,12 +11,25 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.zjy.pocketbus.FieldConstant;
 import com.zjy.pocketbus.R;
+import com.zjy.pocketbus.UserStatus;
+import com.zjy.pocketbus.entity.SimpleResponse;
 import com.zjy.pocketbus.event.LoginStateEvent;
+import com.zjy.pocketbus.helper.LoginHelper;
+import com.zjy.pocketbus.utils.HttpUtil;
+import com.zjy.pocketbus.utils.ToastUtil;
 import com.zjy.pocketbus.view.activity.LoginActivity;
+import com.zjy.pocketbus.view.activity.MainActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.Map;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class MineFragment extends Fragment implements View.OnClickListener {
 
@@ -42,6 +55,39 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         mUnLogin_btn.setOnClickListener(this);
         mLogin_btn.setOnClickListener(this);
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(UserStatus.isLogin(getContext())){
+            Map<String, String> data = LoginHelper.readUserPreference(getContext());
+            HttpUtil.login(data.get(FieldConstant.USER_NAME), data.get(FieldConstant.USER_PASSWORD))
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Subscriber<SimpleResponse>() {
+                        @Override
+                        public void onCompleted() {
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            e.printStackTrace();
+                            ToastUtil.show(getContext(), e.getMessage());
+                        }
+
+                        @Override
+                        public void onNext(SimpleResponse simpleResponse) {
+                            if(simpleResponse.isOk()){
+                                Map<String, Object> data = simpleResponse.getData();
+                                LoginHelper.login(getContext(), data);
+                                ToastUtil.show(getContext(), "登录成功");
+                            } else {
+                                ToastUtil.show(getContext(), "登录失败");
+                            }
+                        }
+                    });
+        }
     }
 
     @Override

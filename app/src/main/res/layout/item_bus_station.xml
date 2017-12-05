@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_gray"
+    android:padding="@dimen/padding_medium">
+
+    <ImageView
+        android:id="@+id/bus_icon"
+        android:layout_width="@dimen/icon_normal_icon"
+        android:layout_height="@dimen/icon_normal_icon"
+        android:layout_margin="@dimen/margin_micro"
+        android:src="@drawable/ic_bus_station" />
+
+    <TextView
+        android:id="@+id/station_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_toEndOf="@+id/bus_icon"
+        android:text="学林街文渊路口"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/station_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:text="220m"
+        android:textSize="16sp" />
+</RelativeLayout>

@@ -7,7 +7,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -16,15 +15,9 @@ import com.amap.api.location.AMapLocationListener;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.zjy.pocketbus.FieldConstant;
-import com.zjy.pocketbus.UserStatus;
-import com.zjy.pocketbus.entity.SimpleResponse;
 import com.zjy.pocketbus.helper.LocationHelper;
 import com.zjy.pocketbus.R;
 import com.zjy.pocketbus.entity.TabEntity;
-import com.zjy.pocketbus.helper.LoginHelper;
-import com.zjy.pocketbus.utils.HttpUtil;
-import com.zjy.pocketbus.utils.ToastUtil;
 import com.zjy.pocketbus.view.fragment.MineFragment;
 import com.zjy.pocketbus.view.fragment.NearbyFragment;
 import com.zjy.pocketbus.view.fragment.RoadFragment;
@@ -33,11 +26,6 @@ import com.zjy.pocketbus.utils.WindowUtils;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
-import java.util.Map;
-
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements AMapLocationListener {
 
@@ -51,14 +39,14 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
 
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private String[] mTitles = {"首页", "路线", "我的"};
-    private int[] mIconUnselectIds = {
+    private int[] mIconUnSelectIds = {
             R.drawable.ic_main_nearby_unselect, R.drawable.ic_main_road_unselect,
             R.drawable.ic_main_mine_unselect};
     private int[] mIconSelectIds = {
             R.drawable.ic_main_nearby, R.drawable.ic_main_road,
             R.drawable.ic_main_mine};
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
-    private String mCurrentCityName = "";
+//    private String mCurrentCityName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,34 +54,6 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
         setContentView(R.layout.activity_main);
         WindowUtils.setStatusBarColor(this, R.color.colorPrimary, false);
 
-        if(UserStatus.isLogin(getApplicationContext())){
-            Map<String, String> data = LoginHelper.readUserPreference(getApplicationContext());
-            HttpUtil.login(data.get(FieldConstant.USER_NAME), data.get(FieldConstant.USER_PASSWORD))
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Subscriber<SimpleResponse>() {
-                        @Override
-                        public void onCompleted() {
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            e.printStackTrace();
-                            ToastUtil.show(MainActivity.this, e.getMessage());
-                        }
-
-                        @Override
-                        public void onNext(SimpleResponse simpleResponse) {
-                            if(simpleResponse.isOk()){
-                                Map<String, Object> data = simpleResponse.getData();
-                                LoginHelper.login(getApplicationContext(), data);
-                                ToastUtil.show(MainActivity.this, "登录成功");
-                            } else {
-                                ToastUtil.show(MainActivity.this, "登录失败");
-                            }
-                        }
-                    });
-        }
         initLocation();
         mViewPager = (ViewPager) findViewById(R.id.vp_main);
         mTabLayout = (CommonTabLayout) findViewById(R.id.tl_main);
@@ -104,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
         mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         mViewPager.setOffscreenPageLimit(2);
         for (int i = 0; i < mTitles.length; i++) {
-            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
+            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnSelectIds[i]));
         }
         mTabLayout.setTabData(mTabEntities);
 
@@ -136,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
             }
         });
         mViewPager.setCurrentItem(0);
+
+//        // 开始搜索附近公交站
+//        searchBusStop(LocationHelper.getInstance().getLatitude(), LocationHelper.getInstance().getLongitude());
     }
 
     public void initLocation() {
@@ -170,9 +133,9 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
     public void onLocationChanged(AMapLocation aMapLocation) {
         if (aMapLocation != null) {
             if (aMapLocation.getErrorCode() == 0) {
-                mCurrentCityName = aMapLocation.getCity();
-                EventBus.getDefault().postSticky(aMapLocation);
+//                mCurrentCityName = aMapLocation.getCity();
                 LocationHelper.getInstance(aMapLocation);
+                EventBus.getDefault().postSticky(aMapLocation);
                 //停止定位后，本地定位服务并不会被销毁
                 mLocationClient.stopLocation();
             }else {

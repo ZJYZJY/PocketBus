@@ -54,6 +54,10 @@ public final class LocationHelper {
         return aMapLocation.getCity();
     }
 
+    public String getCityCode() {
+        return aMapLocation.getCityCode();
+    }
+
     public String getDistrict(){
         // 获取城区信息
         return aMapLocation.getDistrict();
